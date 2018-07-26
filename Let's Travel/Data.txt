@@ -1,0 +1,91 @@
+
+create table Taxi_company(T_id int, Tname varchar(15), Avg_rating float(2,1), cost_per_km float(4,2), constraint pmtid primary key(T_id));
+insert into Taxi_company values(2001, "Ola", 4.0, 20.00);
+insert into Taxi_company values(2002, "Uber", 4.5, 16.00);
+insert into Taxi_company values(2003, "Meru", 3.4, 19.00);
+insert into Taxi_company values(2004, "Easy", 3.2, 21.00);
+insert into Taxi_company values(2005, "Taxi for sure", 3.7, 25.00);
+insert into Taxi_company values(2006, "Savaari.com", 3.9, 22.00);
+insert into Taxi_company values(2007, "Mega cabs", 3.0, 23.00);
+insert into Taxi_company values(2008, "Tab cab", 3.6, 27.00);
+insert into Taxi_company values(2009, "Wings radio cab", 2.5, 25.00);
+insert into Taxi_company values(2010, "Cel cabs", 3.0, 28.00);
+
+
+
+create table Cab(T_id int not null,D_id int not null,reg_no varchar(20),Vehicle_name varchar(20) not null,seating_capacity number(2),color varchar(5),tmode varchar(5),type varchar(10),taxi_status varchar(5), constraint pmregno primary key(reg_no));
+
+insert into cab values(2001,3555,"TN08AB2016","Tata Indica",4,"black","A/c","Economic",NULL);
+insert into cab values(2002,3565,"TN34KL3456","Skoda rapid",5,"peach","A/c","Standard",NULL);
+insert into cab values(2003,3578,"TN67SH5087","honda brio",5,"green","A/c","premium",NULL);
+insert into cab values(2002,2345,"TN30PR2356","Tata genx nano",4,"Grey","A/c","economic",NULL);
+insert into cab values(2003,7893,"TN13SC3478","Tata safari storme",6,"paleyellow","NonAc","premium",NULL);
+insert into cab values(2002,3456,"TN56JK1238","Tata ace",4,"black","A/c","Economic",NULL);
+insert into cab values(2001,1235,'TN23RT2222',"Novus",5,"grey","A/c","Economic",NULL);
+insert into cab values(2003,4567,"TN78JK9083","Mitsubishi Lancer",7,"brown","Non A/c","Premium",NULL);
+insert into cab values(2002,9087,"TN67AC5665","Tata Xenon",4,"grey","A/c","standard",NULL);
+insert into cab values(2003,2349,"TN13CG2056","honda amaze",5,"Grey","nonAc","Economic",NULL);
+
+insert into cab values(2004,3553,"TN08AB2018","Tata Indica",4,"black","A/c","Economic",NULL);
+insert into cab values(2004,3983,"TN34KL3478","Skoda rapid",5,"peach","A/c","Standard",NULL);
+insert into cab values(2005,3563,"TN67SH5034","honda brio",5,"green","A/c","premium",NULL);
+insert into cab values(2005,2380,"TN30PR2312","Tata genx nano",4,"Grey","A/c","economic",NULL);
+insert into cab values(2004,7812,"TN13SC3497","Tata safari storme",6,"paleyellow","NonAc","premium",NULL);
+insert into cab values(2004,3445,"TN56JK1212","Tata ace",4,"black","A/c","Economic",NULL);
+insert into cab values(2001,1260,'TN23RT2244',"Novus",5,"grey","A/c","Economic",NULL);
+insert into cab values(2003,4521,"TN78JK9078","Mitsubishi Lancer",7,"brown","Non A/c","Premium",NULL);
+insert into cab values(2002,9067,"TN67AC5699","Tata Xenon",4,"grey","A/c","standard",NULL);
+insert into cab values(2003,2389,"TN13CG2050","honda amaze",5,"Grey","nonAc","Economic",NULL);
+
+
+create table Ride(booking_id int, Pick_up_Location varchar(50) not null, drop_location varchar(50) not null, pickup_time timestamp check (Start_time like "--:--:--") not null, pickup_date date check(pickup_date like "----/--/--") not null , rating number(2,1), fare float(3,2), distance float(3,2), C_id int, D_id int , reg_no varchar(20), offer_id int, C_mobileno int, constraint pmbkid primary key(booking_id));
+insert into ride values(5678, "no.1/1, seabay street ashok nagar, chennai-2", "Express Avenue, Royapet, Chennai-1", "02:30:00", "2018-03-16", 4.5, 500.0, 23.0, 101, 3565, "TN34KL3456",  123, 9876543432);
+
+
+create table Offer( Offer_id number(3), offer_type varchar(15), Promocode varchar(5), constraint pmofferid primary key(Offer_id),unique(Promocode));
+insert into Offer values(123, "micro","TAKE60");
+insert into Offer values(345, "mini", "TAKE100");
+insert into Offer values(567, "excel", "TAKE45");
+insert into Offer values(987, "ubergo", "TAKE25%");
+insert into Offer values(435, "ubersuper", "TAKE30");
+
+
+
+
+create table Customer(C_id int, C_name varchar(15), C_Mobileno int, C_Address varchar(30), C_Email varchar(20),C_pwd varchar(15), C_dob date, constraint  pmcid primary key(C_id));
+insert into Customer values(101, "Ram", 9876543432, "1/1, Kalidasar street, East Tambaram, Chennai-59", "ram1411@gmail.com", "pwd1","1979-05-05');
+insert into Customer values(102, "Raj", 9765432190, "30, Kalamegam street, East Tambaram, Chennai-59", "raj23@gmail.com", "pwd2", "1978-09-08");
+insert into Customer values(103, "Rahul", 9764532422, "50, Garden street, Ashok nagar, Chennai-02", "rahul54@gmail.com","pwd3", "1992-06-09");
+
+create table Driver(D_id number(4), Dname varchar(15), Dmobile_no number(10), D_email varchar(20), D_dob date, D_rating number(2,1), constraint pmdid primary key(D_id));
+insert into Driver values(3555, "Ramasamy", 987650431, "ramasamy@gmail.com", "1986-09-09", 4.5);
+insert into Driver values(3565, "Kandasamy",965432898, "kandasamy@gmail.com", "1976-01-07", 3.9); 
+insert into Driver values(3578, "James", 7654321897, "james@gmail.com", "1987-09-07", 4.3);
+insert into Driver values(2345, "John", 8765432196, "john@gmail.com", "1987-10-08", 4.8);
+insert into Driver values(7893, "William", 9876543907,"william@gmail.com", "1976-09-09", 3.8);
+insert into Driver values(3456, "Steve", 7654389066, "steve@gmail.com", "1989-07-07", 4.7);
+insert into Driver values(1235, "Sam", 7890650754, "sam@gmail.com", "1978-05-05", 4.7);
+insert into Driver values(4567, "Sid", 6547839201, "sid@gmail.com", "1967-02-09", 4.8);
+insert into Driver values(9087, "George", 9865490877, "george@gmail.com", "1980-11-09", 4.3);
+insert into Driver values(2349, "Fred", 6547890444, "fred@gmail.com", "1986-12-10", 4.1);
+
+insert into Driver values(3553, "Ramasamyiyer", 987650431, "ramiyer@gmail.com", "1986-09-09", 4.5);
+insert into Driver values(3983, "Kanda",965432898, "kanda@gmail.com", "1976-01-07", 3.9); 
+insert into Driver values(3563, "Jamesbond", 7654321897, "jamesbond@gmail.com", "1987-09-07", 4.3);
+insert into Driver values(2380, "Johnabraham", 8765432196, "johnbran@gmail.com", "1987-10-08", 4.8);
+insert into Driver values(7812, "Williamoks", 9876543907,"williamoks@gmail.com", "1976-09-09", 3.8);
+insert into Driver values(3445, "Stevejobs", 7654389066, "steveleks@gmail.com", "1989-07-07", 4.7);
+insert into Driver values(1260, "Samfisher", 7890650754, "samfish@gmail.com", "1978-05-05", 4.7);
+insert into Driver values(4521, "Sidsriram", 6547839201, "sidram@gmail.com", "1967-02-09", 4.8);
+insert into Driver values(9067, "Georgeton", 9865490877, "georgeton@gmail.com", "1980-11-09", 4.3);
+insert into Driver values(2389, "Fredfright", 6547890444, "fredfri@gmail.com", "1986-12-10", 4.1);
+
+
+alter table Ride add constraint fkcid foreign key(C_id) references Customer(C_id) on update cascade on delete cascade;
+alter table Ride add constraint fkmobileno foreign key(C_Mobileno) references Customer(C_Mobileno) on update cascade on delete cascade;
+alter table Ride add constraint fkdid foreign key(D_id) references Driver(D_id) on update cascade on delete cascade;
+alter table Ride add constraint fkregno foreign key(reg_no) references Cab(reg_no) on update cascade on delete cascade;
+alter table Ride add constraint fkofferid foreign key(Offer_id) references Offer(Offer_id) on update cascade on delete cascade;
+alter table Cab add constraint fktid foreign key(T_id) references Taxi_company(T_id) on update cascade on delete cascade;
+alter table Cab add constraint fkd_id foreign key(D_id) references Driver(D_id) on update cascade on delete cascade;
+
